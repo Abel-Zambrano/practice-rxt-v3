@@ -53,12 +53,14 @@ const App = () => {
 
 // Inline Styling ================================================================= 
   const style = {
-    backgroundColor: 'white',
+    backgroundColor: 'green',
+    color: 'white',
     font: 'inherit',
     border: '1px solid blue',
     padding: '8px',
-    borderRadius: '20px',
-    cursor: 'pointer'
+    borderRadius: '10px',
+    cursor: 'pointer',
+    outline: 'none'
   }
   
 // RENDER ==========================================================================
@@ -76,7 +78,8 @@ const App = () => {
           inputName={(event) => nameInputHandler(event, person.id)} />
         })}
       </div>
-    )
+    );
+    style.backgroundColor = 'red';
   }
 
   return (
