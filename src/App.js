@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
+
 
 
 const App = () => {
@@ -60,10 +62,14 @@ const App = () => {
     padding: '8px',
     borderRadius: '10px',
     cursor: 'pointer',
-    outline: 'none'
+    outline: 'none',
+    ':hover': {
+      backgroundColor: 'lightgreen',
+      color: 'black'
+    }
   };
 
-  let styleClasses = [] // ['red', 'bold'].join(' '); output: 'red bold'
+  const styleClasses = [] // ['red', 'bold'].join(' '); output: 'red bold'
   if (personsState.persons.length <= 2) {
     styleClasses.push('red'); // styleClasses = ['red']
   }
@@ -87,17 +93,24 @@ const App = () => {
         })}
       </div>
     );
+
     style.backgroundColor = 'red';
+    style[':hover'] = {
+      backgroundColor: 'salmon',
+      color: 'black'
+    };
   }
 
   return (
-    <div className="App">
-      <h1>This is a React App</h1>
-      <p className={styleClasses.join(' ')}>This is really working!</p>
-      <button style={style} onClick={togglePersonHandler}>Toggle Persons</button>
-      {personsDiv}
-    </div>
+    <StyleRoot>
+      <div className="App">
+        <h1>This is a React App</h1>
+        <p className={styleClasses.join(' ')}>This is really working!</p>
+        <button style={style} onClick={togglePersonHandler}>Toggle Persons</button>
+        {personsDiv}
+      </div>
+    </StyleRoot>
   ); 
   }
 
-export default App;
+export default Radium(App);
