@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
 import Person from './Person/Person';
 
-
+const StyledButton = styled.button`
+  background-color: green;
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    background-color: lightgreen;
+    color: black
+  }
+`;
 
 const App = () => {
 
@@ -53,22 +66,7 @@ const App = () => {
 
   }
 
-// Inline Styling ================================================================= 
-  const style = {
-    backgroundColor: 'green',
-    color: 'white',
-    font: 'inherit',
-    border: '1px solid blue',
-    padding: '8px',
-    borderRadius: '10px',
-    cursor: 'pointer',
-    outline: 'none',
-    ':hover': {
-      backgroundColor: 'lightgreen',
-      color: 'black'
-    }
-  };
-
+// Styling ================================================================================
   const styleClasses = [] // ['red', 'bold'].join(' '); output: 'red bold'
   if (personsState.persons.length <= 2) {
     styleClasses.push('red'); // styleClasses = ['red']
@@ -94,23 +92,21 @@ const App = () => {
       </div>
     );
 
-    style.backgroundColor = 'red';
-    style[':hover'] = {
-      backgroundColor: 'salmon',
-      color: 'black'
-    };
+    // style.backgroundColor = 'red';
+    // style[':hover'] = {
+    //   backgroundColor: 'salmon',
+    //   color: 'black'
+    // };
   }
 
   return (
-    <StyleRoot>
       <div className="App">
         <h1>This is a React App</h1>
         <p className={styleClasses.join(' ')}>This is really working!</p>
-        <button style={style} onClick={togglePersonHandler}>Toggle Persons</button>
+        <StyledButton onClick={togglePersonHandler}>Toggle Persons</StyledButton>
         {personsDiv}
       </div>
-    </StyleRoot>
   ); 
   }
 
-export default Radium(App);
+export default App;
