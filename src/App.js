@@ -61,6 +61,14 @@ const App = () => {
     borderRadius: '10px',
     cursor: 'pointer',
     outline: 'none'
+  };
+
+  let styleClasses = [] // ['red', 'bold'].join(' '); output: 'red bold'
+  if (personsState.persons.length <= 2) {
+    styleClasses.push('red'); // styleClasses = ['red']
+  }
+  if (personsState.persons.length <=1) {
+    styleClasses.push('bold'); // styleClasses = ['red', 'bold']
   }
   
 // RENDER ==========================================================================
@@ -85,7 +93,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>This is a React App</h1>
-      <p>This is really working!</p>
+      <p className={styleClasses.join(' ')}>This is really working!</p>
       <button style={style} onClick={togglePersonHandler}>Toggle Persons</button>
       {personsDiv}
     </div>
