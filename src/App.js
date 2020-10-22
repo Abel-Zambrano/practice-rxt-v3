@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Person from './Person/Person';
 
 const StyledButton = styled.button`
-  background-color: green;
+  background-color: ${props => props.alternative ? 'red' : 'green'};
   color: white;
   font: inherit;
   border: 1px solid blue;
@@ -13,7 +13,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   outline: none;
   &:hover {
-    background-color: lightgreen;
+    background-color: ${props => props.alternative ? 'salmon' : 'lightgreen'};
     color: black
   }
 `;
@@ -91,19 +91,13 @@ const App = () => {
         })}
       </div>
     );
-
-    // style.backgroundColor = 'red';
-    // style[':hover'] = {
-    //   backgroundColor: 'salmon',
-    //   color: 'black'
-    // };
   }
 
   return (
       <div className="App">
         <h1>This is a React App</h1>
         <p className={styleClasses.join(' ')}>This is really working!</p>
-        <StyledButton onClick={togglePersonHandler}>Toggle Persons</StyledButton>
+        <StyledButton alternative={showPersons} onClick={togglePersonHandler}>Toggle Persons</StyledButton>
         {personsDiv}
       </div>
   ); 
